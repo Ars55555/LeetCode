@@ -1,0 +1,87 @@
+Given an integer array nums of unique elements, return all possible 
+subsets
+ (the power set).
+
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+ Input: nums = [1,2,3]
+Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+--------------------------------------------------------------------
+class Solution {
+public:
+    void back(vector<vector<int>>&vv,vector<int>v,int s,vector<int>&nums){
+        if(s==nums.size()){
+            vv.push_back(v);return;
+        }
+        v.push_back(nums[s]);
+        back(vv,v,s+1,nums);
+        v.pop_back();
+        back(vv,v,s+1,nums);
+    }
+   
+    vector<vector<int>> subsets(vector<int>& nums) {
+       
+    //    back(nums,0);
+    vector<vector<int>>vv;
+    vector<int>v;
+    back(vv,v,0,nums);
+      return vv;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    //    subset(nums,0,subs,sub);
+    //    return subs;
+
+
+ // void subset(vector<int>& nums,int i, vector<vector<int>> &subs,vector<int >&sub){
+    //     subs.push_back(sub);
+    //     for(int j=i;j<nums.size();j++){
+    //         sub.push_back(nums[j]);
+    //         subset(nums,j+1,subs,sub);
+    //         sub.pop_back();
+    //     }
+    // }
+}
+};
