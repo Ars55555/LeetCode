@@ -1,0 +1,42 @@
+Input:
+N = 4, M = 3 
+valueN[] = {5,10,15,40}
+valueM[] = {2,3,20}
+Output: 2 3 5 10 15 20 40
+Explanation: After merging the two linked
+lists, we have merged list as 2, 3, 5,
+10, 15, 20, 40.
+-------------------------------------------------------------
+Node* sortedMerge(Node* head1, Node* head2)  
+{  
+    // code here
+    Node *p=head2;
+    Node *c=head1;
+    Node *dum=new Node(-1);
+    Node *db=dum;
+    
+    while(p!=NULL && c!=NULL){
+        if(p->data < c->data){
+            db->next=p;
+            p=p->next;
+        }else{
+            db->next=c;
+            c=c->next;
+            
+        }
+        db=db->next;
+    }
+    while(p!=NULL){
+        db->next=p;
+        p=p->next;
+        db=db->next;
+        
+    }
+    while(c!=NULL){
+        db->next=c;
+        c=c->next;
+        db=db->next;
+        
+    }
+    return dum->next;
+}  
