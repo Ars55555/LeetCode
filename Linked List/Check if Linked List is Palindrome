@@ -1,0 +1,42 @@
+Input:
+N = 3
+value[] = {1,2,1}
+Output: 1
+Explanation: The given linked list is
+1 2 1 , which is a palindrome and
+Hence, the output is 1.
+----------------------------------------------
+ bool isPalindrome(Node *head)
+    {
+        //Your code here
+        Node *fast=head;
+        Node *slow=head;
+        while(fast && fast->next){ 
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        if(fast!=NULL)
+        {
+            slow=slow->next;
+        }
+        Node *prev=NULL;
+        Node *curr=slow;
+        Node *np=NULL;
+        while(curr!=NULL){
+            np=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=np;
+        }
+        
+        Node *k=head,*kt=prev;
+        while(k && kt){
+            if(kt->data!=k->data)
+                return false;
+            
+            kt=kt->next;
+            k=k->next;
+        }
+        return true;
+        // return true;
+    }
