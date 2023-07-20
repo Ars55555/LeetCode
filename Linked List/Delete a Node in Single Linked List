@@ -1,0 +1,31 @@
+Input: 1 -> 3 -> 4 
+       x = 3
+Output: 1 -> 3
+Explanation:
+After deleting the node at 3rd
+position (1-base indexing), the
+linked list is as 1 -> 3. 
+--------------------------------------------------------
+Node* deleteNode(Node *head,int x)
+{
+    //Your code here
+    Node *p=head,*prev=NULL;
+    if(x==1){
+        return head=head->next;
+    }else{
+        int c=1;
+        while(p!=NULL){
+            if(c != x){
+                 prev=p;
+                p=p->next;
+               
+                c++;
+            }else if(c==x){
+                prev->next=p->next;
+                p->next=NULL;
+                return head;
+            }
+        }
+    }
+    return NULL;
+}
