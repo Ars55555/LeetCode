@@ -1,0 +1,29 @@
+N = 4
+value[] = {5,2,2,4}
+Output: 5 2 4
+Explanation:Given linked list elements are
+5->2->2->4, in which 2 is repeated only.
+So, we will delete the extra repeated
+elements 2 from the linked list and the
+resultant linked list will contain 5->2->4
+-----------------------------------------------------------------------
+
+
+Node * removeDuplicates( Node *head) 
+    { 
+       Node *t=head;
+       
+     unordered_map<int,int>m;
+     m[t->data]=1;
+     while(t->next!=NULL){
+         if(m.count(t->next->data)){
+             t->next=t->next->next;
+             
+         }else{
+             t=t->next;
+             m[t->data]++;
+             
+         }
+     }
+     return head;
+    }
