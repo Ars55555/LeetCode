@@ -1,0 +1,51 @@
+Given a singly linked list, remove all the nodes which have a greater value on their right side.
+
+Example 1:
+
+Input:
+LinkedList = 12->15->10->11->5->6->2->3
+Output: 15 11 6 3
+Explanation: Since, 12, 10, 5 and 2 are
+the elements which have greater elements
+on the following nodes. So, after deleting
+them, the linked list would like be 15,
+11, 6, 3.
+----------------------------------------------
+ Node *reverse(Node *head){
+        Node *prev=NULL,*curr=head,*np=NULL;
+        while(curr!=NULL){
+            np=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=np;
+        }
+        return prev;
+    }
+    Node *compute(Node *head)
+    {
+        // your code goes here
+        Node *c=reverse(head);
+        Node *h=c;
+        // while(c->next!=NULL){
+        //     c=c->next;
+        // }
+        int maxi=c->data;
+        Node *prev=NULL;
+        while(c!=NULL){
+            if(c->data >= maxi){
+                maxi=c->data;
+                prev=c;
+                c=c->next;
+                
+            }else{
+                // maxi=c->data;
+                prev->next=c->next;
+                // prev=prev->next;
+                c=prev->next;
+            }
+           
+            
+        }
+        head=reverse(h);
+        return head;
+    }
