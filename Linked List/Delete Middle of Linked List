@@ -1,0 +1,30 @@
+Node* deleteMid(Node* head)
+{
+    // Your Code Here
+    if(head==NULL || head->next==NULL){
+        return NULL;
+    }
+    int cp=0;
+    Node *t=head;
+    while(t!=NULL){
+        cp++;
+        t=t->next;
+    }
+    t=head;Node *p;
+    cp=(cp)/2;
+    int ro=0;
+    while(t!=NULL){
+        ro++;
+        if(ro==cp){
+        // p->next=t->next;
+        t->next=t->next->next;
+        return head;
+        break;
+        }
+        // p=t;
+        t=t->next;
+        
+    }
+    return head;
+    
+}
