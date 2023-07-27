@@ -1,0 +1,16 @@
+Given a binary tree of size N, you have to count number of nodes in it. For example, count of nodes in below tree is 4.
+
+        1
+     /      \
+   10      39
+  /
+5
+---------------------------------
+int getSize(Node* node)
+{
+   // Your code here
+   if(node==NULL){
+       return 0;
+   }
+   return 1+getSize(node->left)+getSize(node->right);
+}
