@@ -1,0 +1,28 @@
+Given a binary tree, find its preorder traversal.
+
+Example 1:
+
+Input:
+        1      
+      /          
+    4    
+  /    \   
+4       2
+Output: 1 4 4 2 
+------------------------------------------
+ void pr(Node *root, vector<int>&v){
+     if(root==NULL){
+         return;
+     }
+     v.push_back(root->data);
+     pr(root->left,v);
+     pr(root->right,v);
+ }
+vector <int> preorder(Node* root)
+{
+  // Your code here
+ 
+  vector<int>v;
+  pr(root,v);
+  return v;
+}
