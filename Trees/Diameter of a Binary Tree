@@ -1,0 +1,29 @@
+Input:
+         10
+        /   \
+      20    30
+    /   \ 
+   40   60
+Output: 4
+-------------------
+class Solution {
+  public:
+    // Function to return the diameter of a Binary Tree.
+    int he(Node *root,int &s){
+        if(root==NULL){
+            return 0;
+        }
+        int lh=he(root->left,s);
+        int rh=he(root->right,s);
+        s=max(lh+rh+1,s);
+        return 1+max(lh,rh);
+        
+    }
+    int diameter(Node* root) {
+        // Your code here
+        int s=0;
+        he(root,s);
+        // int r=he(root->right,s);
+        return s;
+    }
+};
