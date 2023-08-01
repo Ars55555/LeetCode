@@ -1,0 +1,18 @@
+bool f=false;
+    void b(TreeNode* root, int targetSum,int sum){
+        if(root==NULL){
+            return;
+        }
+        sum+=root->val;
+        if(targetSum==sum && root->left==NULL && root->right==NULL){
+            f=true;
+            return;
+        }
+        b(root->left,targetSum,sum);
+        b(root->right,targetSum,sum);
+    }
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        int sum=0;
+        b(root,targetSum,sum);
+        return f;
+    }
