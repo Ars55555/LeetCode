@@ -1,0 +1,70 @@
+
+Input:
+        1 
+      /   \
+     2     3  
+    / \   / \ 
+   4   5 6   7
+      / \
+     8   9
+   
+Output: 1 2 4 8 9 6 7 3
+------------------------------------
+
+class Solution {
+public:
+    void traverseL(Node * root,vector<int>&v){
+        if((root==NULL ) || (root->left==NULL && root->right==NULL)){
+            return;
+        }
+        v.push_back(root->data);
+        if(root->left!=NULL){
+            traverseL(root->left,v);
+        }else{
+            traverseL(root->right,v);
+        }
+    }
+    void leaf(Node * root,vector<int>&v){
+        if(root==NULL){
+            return;
+        }
+        if(root->left==NULL && root->right==NULL){
+            v.push_back(root->data);return;
+        }
+        leaf(root->left,v);
+        leaf(root->right,v);
+    }
+    void right(Node * root,vector<int>&temp){
+        if((root==NULL)||(root->left==NULL && root->right==NULL)){
+            return;
+        }
+        temp.push_back(root->data);
+        if(root->right!=NULL){
+            right(root->right,temp);
+        }else{
+            right(root->left,temp);
+        }
+    }
+    vector <int> boundary(Node *root)
+    {
+        //Your code here]
+        vector<int>v;
+         v.push_back(root->data);
+        if(root==NULL){
+            return v;
+        }
+        // v.push_back(root->data);
+        vector<int>temp;
+        traverseL(root->left,v);
+        
+        leaf(root->left,v);
+        leaf(root->right,v);
+        
+        right(root->right,temp);
+        reverse(temp.begin(),temp.end());
+        for(auto it:temp){
+            v.push_back(it);
+        }
+        return v;
+    }
+};
