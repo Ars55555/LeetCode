@@ -1,0 +1,38 @@
+Input:
+    3
+  /   \    
+ 1     2
+
+Output: 1
+Explanation:
+The sum of left subtree and right subtree is
+1 + 2 = 3, which is the value of the root node.
+Therefore,the given binary tree is a sum tree.
+
+------------------------------------
+int sol(Node *root){
+        if(root==NULL){
+            return 0;
+        }
+        if(!root->left && !root->right){
+            return root->data;
+        }
+        int left=sol(root->left);
+        int right=sol(root->right);
+        if(left==-1 || right == -1){
+            return -1;
+        }
+        if(left+right==root->data){
+            return left+right+root->data;
+        }
+        return -1;
+    }
+    bool isSumTree(Node* root)
+    {
+         // Your code here
+         if(sol(root)==-1){
+             return false;
+         }
+        return true;
+         
+    }
